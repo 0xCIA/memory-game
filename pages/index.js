@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import MemoryGame from "@/components/GameBoard";
 import styled from "styled-components";
-import { FaEnvelope, FaGithubSquare, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
-
 
 const Container = styled.div`
   display: flex;
@@ -46,46 +44,6 @@ const Option = styled.option`
 display: flex;
 background: rgba(50, 50, 50, .16);
 text-align: center;
-`;
-
-const Footer = styled.footer`
-  gap: 1.9rem;
-  border-top: 1px solid rgba(30, 30, 30, .16);
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  padding: 5px;
-  color: #777;
-  font-size: 2.2rem;
-`;
-
-const Foot = styled.p`
-color: #777;
-text-align: center;
-`;
-
-const EmailLink = styled.a`
-&:hover {
-  color: rgba(150, 150, 150, 1);
-}
-`;
-
-const GithubLink = styled.a`
-&:hover {
-  color: rgba(150, 150, 150, 1);
-}
-`;
-
-const LinkedinLink = styled.a`
-&:hover {
-  color: rgba(150, 150, 150, 1);
-}
-`;
-
-const TwitterLink = styled.a`
-&:hover {
-  color: rgba(150, 150, 150, 1);
-}
 `;
 
 export default function Home() {
