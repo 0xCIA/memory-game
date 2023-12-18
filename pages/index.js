@@ -1,118 +1,117 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import React, { useState } from "react";
+import MemoryGame from "@/components/GameBoard";
+import styled from "styled-components";
+import { FaEnvelope, FaGithubSquare, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 
-const inter = Inter({ subsets: ['latin'] })
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: rgba(50, 50, 50, .16);
+`;
+
+const Content = styled.div`
+  flex: 1;
+`;
+
+const Title = styled.h1`
+background: rgba(50, 50, 50, .03);
+border-bottom: 1px solid rgba(30, 30, 30, .16);
+text-transform: uppercase;
+font-family: Montserrat, sans-serif;
+font-size: 3rem;
+text-align: center;
+`;
+
+const SubTitle = styled.label`
+margin-top: 50px;
+text-transform: uppercase;
+font-family: Montserrat, sans-serif;
+font-size: 1.3rem;
+text-align: center;
+display: flex;
+justify-content: center;
+text-align: center;
+align-items: center;
+
+select {
+  font-size: 1.5rem;
+  background: rgba(50, 50, 50, .05);
+  border-radius: 5px;
+}
+`;
+
+const Option = styled.option`
+display: flex;
+background: rgba(50, 50, 50, .16);
+text-align: center;
+`;
+
+const Footer = styled.footer`
+  gap: 1.9rem;
+  border-top: 1px solid rgba(30, 30, 30, .16);
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  padding: 5px;
+  color: #777;
+  font-size: 2.2rem;
+`;
+
+const Foot = styled.p`
+color: #777;
+text-align: center;
+`;
+
+const EmailLink = styled.a`
+&:hover {
+  color: rgba(150, 150, 150, 1);
+}
+`;
+
+const GithubLink = styled.a`
+&:hover {
+  color: rgba(150, 150, 150, 1);
+}
+`;
+
+const LinkedinLink = styled.a`
+&:hover {
+  color: rgba(150, 150, 150, 1);
+}
+`;
+
+const TwitterLink = styled.a`
+&:hover {
+  color: rgba(150, 150, 150, 1);
+}
+`;
 
 export default function Home() {
+  const [numberOfCards, setNumberOfCards] = useState(16);
+
+  const handleOptionChange = (event) => {
+    setNumberOfCards(Number(event.target.value));
+  };
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+<Container>
+  <Content>
+      <Title>Memory Card Game</Title>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+        <SubTitle>
+          Number of Cards:
+          <select value={numberOfCards} onChange={handleOptionChange}>
+            <Option value={16}>16</Option>
+            <Option value={32}>32</Option>
+            <Option value={64}>64</Option>
+            <Option value={128}>128</Option>
+          </select>
+        </SubTitle>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      <MemoryGame numberOfCards={numberOfCards} />
+      </Content>
+    </Container>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
   )
 }
